@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: #070b14;
+}
+
+body {
+  @apply text-slate-200 antialiased;
+  background-image:
+    radial-gradient(900px 500px at 85% -10%, rgba(124, 92, 255, 0.13), transparent 60%),
+    radial-gradient(700px 400px at -10% 10%, rgba(59, 130, 246, 0.09), transparent 55%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(124, 92, 255, 0.4);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1e2a47 transparent;
+}
+
+@layer components {
+  .surface {
+    @apply rounded-2xl border border-white/[0.07] bg-ink-800/80 backdrop-blur;
+  }
+  .field {
+    @apply w-full rounded-xl border border-white/10 bg-ink-900 px-3.5 py-2.5 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-brand/60 focus:ring-4 focus:ring-brand/15 disabled:opacity-50;
+  }
+  .field option {
+    background: #0d1425;
+  }
+}
