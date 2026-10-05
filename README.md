@@ -30,14 +30,15 @@ A multi-tenant task and project management platform. Teams create workspaces, or
 
 ## Architecture
 
+~~~
 Browser (Next.js, port 3000)
-| fetch /api/* (httpOnly cookie)
-v
+   |  fetch /api/*  (httpOnly cookie)
+   v
 Express API (port 4000)
-| authenticate -> requirePermission -> controller -> service
-v
-Prisma -> PostgreSQL
-
+   |  authenticate  ->  requirePermission  ->  controller  ->  service
+   v
+Prisma  ->  PostgreSQL
+~~~
 
 - **Controllers** parse and validate input. **Services** hold business logic and every database query. **Middleware** handles authentication and permissions.
 - `authenticate` verifies the cookie and resolves the user's workspace (`tenantId`) and role from the database on every request. Every service query then filters by that `tenantId`, so one workspace can never read or change another workspace's data. Resources from another workspace return `404`.
@@ -46,25 +47,26 @@ Prisma -> PostgreSQL
 
 ### Project structure
 
+~~~
 taskflow/
-backend/
-prisma/ schema.prisma, migrations, seed.ts
-scripts/ smoke-test.ps1
-src/
-config/ env validation, Prisma client
-controllers/ request handlers
-middleware/ authenticate, requirePermission, rate limits, errors
-routes/ route definitions
-services/ business logic and queries
-validators/ Zod schemas
-utils/ permissions, JWT, errors
-frontend/
-app/ (auth) login/register, (app) dashboard, projects, tasks, team, ...
-components/ ui, layout, dashboard, projects, tasks, team, settings
-hooks/ useAuth, useApi, ...
-lib/ API client, helpers
-types/
-
+  backend/
+    prisma/            schema.prisma, migrations, seed.ts
+    scripts/           smoke-test.ps1
+    src/
+      config/          env validation, Prisma client
+      controllers/     request handlers
+      middleware/      authenticate, requirePermission, rate limits, errors
+      routes/          route definitions
+      services/        business logic and queries
+      validators/      Zod schemas
+      utils/           permissions, JWT, errors
+  frontend/
+    app/               (auth) login/register, (app) dashboard, projects, tasks, team, ...
+    components/        ui, layout, dashboard, projects, tasks, team, settings
+    hooks/             useAuth, useApi, ...
+    lib/               API client, helpers
+    types/
+~~~
 ## Getting started
 
 ### Prerequisites
@@ -74,8 +76,9 @@ types/
 
 ### 1. Create the database
 
+~~~
 psql -U postgres -c "CREATE DATABASE taskflow;"
-
+~~~
 
 ### 2. Configure environment variables
 
@@ -101,24 +104,25 @@ Create `backend/.env` and `frontend/.env.local` using `.env.example` as a guide.
 
 ### 3. Install, migrate and seed
 
+~~~
 cd backend
 npm install
 npx prisma migrate dev
 npx prisma db seed
-
+~~~
 
 ### 4. Run
-terminal 1
 
+~~~
+# terminal 1
 cd backend
 npm run dev
 
-terminal 2
-
+# terminal 2
 cd frontend
 npm install
 npm run dev
-
+~~~
 
 Open http://localhost:3000. Useful database commands: `npx prisma studio` (browse data), `npx prisma migrate dev --name <change>` (new migration), `npx prisma db seed` (reset demo data).
 
@@ -180,12 +184,13 @@ Known limitations: JWTs are stateless, so changing a password does not sign out 
 
 ## Testing
 
-With the backend running and freshly seeded data, run the API smoke test (about 70 checks covering authentication, the permission matrix for each role, validation, team rules and tenant isolation):
+With the backend running and freshly seeded data, run the API smoke test (about 75 checks covering authentication, the permission matrix for each role, validation, team rules and tenant isolation):
 
+~~~
 cd backend
 npx prisma db seed
 .\scripts\smoke-test.ps1
-
+~~~
 
 Type-check both apps with `npx tsc --noEmit`, and build with `npm run build` in each folder.
 
@@ -217,4 +222,4 @@ _Add screenshots here: login, dashboard, projects, task board, team, billing._
 
 ## Author
 
-Built by **NITHYA HARI G**. Connect on [LinkedIn](www.linkedin.com/in/nithyaharig) or [GitHub](https://github.com/Nithya12-git).
+Built by **[Your Name]**. Find more of my work on [GitHub](https://github.com/Nithya12-git).
