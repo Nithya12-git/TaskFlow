@@ -2,7 +2,6 @@
 
 A multi-tenant task and project management platform. Teams create workspaces, organize work into projects and tasks, assign it to teammates, and control access with four roles. Built as a full-stack portfolio project: real database, real authentication, real server-side authorization.
 
-> Add a screenshot or two of the dashboard here (see [Screenshots](#screenshots)).
 
 ## Features
 
@@ -206,10 +205,6 @@ Type-check both apps with `npx tsc --noEmit`, and build with `npm run build` in 
    - Next.js forwards `/api/*` to the backend, so the login cookie stays first-party.
 4. Do not run the seed script against a production database.
 
-## Screenshots
-
-_Add screenshots here: login, dashboard, projects, task board, team, billing._
-
 ## Future improvements
 
 - Email invitations and password reset
@@ -222,4 +217,4 @@ _Add screenshots here: login, dashboard, projects, task board, team, billing._
 
 ## Author
 
-Built by **[Your Name]**. Find more of my work on [GitHub](https://github.com/Nithya12-git).
+Built by **NITHYA_HARI_GANGADHAR**. Find more of my work on [GitHub](https://github.com/Nithya12-git).
