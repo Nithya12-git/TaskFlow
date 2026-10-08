@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ToastProvider } from "@/components/ui/Toast";
 import { AuthProvider } from "@/hooks/useAuth";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = localFont({ src: "./fonts/GeistVF.woff", variable: "--font-inter", weight: "100 900" });
 
 export const metadata: Metadata = {
   title: "TaskFlow",
